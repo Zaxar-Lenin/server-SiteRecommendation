@@ -1,0 +1,44 @@
+    type Post{
+        id: ID!
+        name: String!
+        author: User!
+        images: [String!]!
+        countLikes: Int!
+    }
+    
+    type User{
+        id: ID!
+        name: String!
+        email: String!
+        posts: [Post]!
+    }
+    
+    input PostInput{
+        content: String!
+        name: String!
+        images: [String]!
+    }
+    
+    input InputRegisterUser{
+        name: String!
+        email: String!
+        password: String!
+        avatar: String!
+        
+    }
+    
+    input InputLoginUser{
+        email: String!
+        password: String!
+    }
+    
+    type Query {
+        posts: [Post]!
+        post(name: String!): [Post!]!
+    }
+    
+    type Mutation {
+        createPost(inputPost: PostInput): Post
+        signUp(input: InputRegisterUser): String
+        signIn(input: InputLoginUser): String
+    }
